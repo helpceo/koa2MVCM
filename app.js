@@ -1,16 +1,18 @@
 const Koa = require('koa')
+const cors = require('@koa/cors')
 const app = new Koa()
 const views = require('koa-views')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-const Boom = require("boom");
-const Router = require('./routes');
-// error handler
+const Boom = require("boom")
+const Router = require('./routes')
+// 错误处理函数
 onerror(app)
-
 // middlewares
+// 用来处理跨域的中间件
+app.use(cors())
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
